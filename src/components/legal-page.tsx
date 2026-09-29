@@ -1,6 +1,7 @@
 import type { ComponentType, ReactNode } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
+import { Logo } from "@/components/brand";
 import { Button } from "@/components/ui/button";
 
 export type LegalSection = {
@@ -29,11 +30,8 @@ export function LegalPage({
         <div className="pointer-events-none absolute -right-32 -top-32 size-[28rem] rounded-full bg-primary-strong/60 blur-3xl" aria-hidden="true" />
         <div className="relative mx-auto max-w-4xl px-5 pt-6 pb-14 sm:px-8">
           <div className="flex items-center justify-between">
-            <a href="/" className="flex items-center gap-2.5" aria-label="Grow Digital — voltar à página inicial">
-              <span className="flex size-10 items-center justify-center rounded-lg bg-hero-foreground font-display text-xl font-semibold text-hero">J</span>
-              <span className="font-display text-lg leading-none font-semibold tracking-wide uppercase">
-                Grow<span className="block text-[0.7rem] tracking-[0.3em] text-hero-foreground/80">Digital</span>
-              </span>
+            <a href="/" className="flex items-center" aria-label="Grow Digital — voltar à página inicial">
+              <Logo className="h-12 w-auto sm:h-16" />
             </a>
             <a href="/" className="flex items-center gap-2 text-sm font-semibold text-hero-foreground/85 transition hover:text-hero-foreground">
               <ArrowLeft className="size-4" /> Voltar
@@ -92,7 +90,10 @@ export function LegalPage({
 
 export function LegalFooter() {
   return (
-    <footer className="border-t border-border px-5 py-8 text-center text-xs text-muted-foreground">
+    <footer className="border-t border-border px-5 py-10 text-center text-xs text-muted-foreground">
+      <a href="/" className="mx-auto mb-4 inline-block" aria-label="Grow Digital">
+        <Logo tone="purple" className="h-12 w-auto" />
+      </a>
       <p>© 2026 Grow Digital · Estratégia, tecnologia e suporte direto de quem desenvolve.</p>
       <p className="mt-3 flex items-center justify-center gap-4">
         <a href="/privacidade" className="underline-offset-4 transition hover:text-primary hover:underline">Política de Privacidade</a>
