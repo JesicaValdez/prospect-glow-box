@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 
 import guideAsset from "@/assets/agenda-cheia.pdf.asset.json";
-import watermarkAsset from "@/assets/logo-watermark.png.asset.json";
+import { Logo, LogoMark } from "@/components/brand";
 import { LegalFooter } from "@/components/legal-page";
 import { Button } from "@/components/ui/button";
 import { submitLead } from "@/lib/leads.functions";
@@ -143,7 +143,7 @@ function Index() {
       {/* ───────── Hero + formulário ───────── */}
       <section ref={heroRef} className="relative bg-hero pt-28 text-hero-foreground sm:pt-32">
         <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-10" aria-hidden="true">
-          <img src={watermarkAsset.url} alt="" className="absolute -left-40 top-24 w-[36rem] max-w-none" />
+          <LogoMark className="absolute -left-24 top-20 h-[34rem] w-auto max-w-none" />
         </div>
         <div className="pointer-events-none absolute -right-32 -top-32 size-[34rem] rounded-full bg-primary-strong/60 blur-3xl" aria-hidden="true" />
 
@@ -341,7 +341,7 @@ function Index() {
             {/* Substituir por uma foto real: <img src="..." alt="Jesica, Grow Digital" className="size-36 rounded-2xl object-cover" /> */}
             <div className="relative size-32 shrink-0 sm:size-36">
               <div className="absolute inset-0 rotate-6 rounded-2xl bg-highlight" />
-              <div className="relative flex size-full items-center justify-center rounded-2xl bg-primary font-display text-6xl font-semibold text-primary-foreground">J</div>
+              <div className="relative flex size-full items-center justify-center rounded-2xl bg-primary"><LogoMark alt="Grow Digital" className="h-20 w-auto sm:h-24" /></div>
             </div>
             <div>
               <p className="text-xs font-bold uppercase tracking-wide text-highlight">Quem está por trás</p>
@@ -423,11 +423,8 @@ function Index() {
 
 function Wordmark() {
   return (
-    <a href="/" className="flex items-center gap-2.5 text-hero-foreground" aria-label="Grow Digital">
-      <span className="flex size-10 items-center justify-center rounded-lg bg-hero-foreground font-display text-xl font-semibold text-hero">J</span>
-      <span className="font-display text-lg leading-none font-semibold tracking-wide uppercase">
-        Grow<span className="block text-[0.7rem] tracking-[0.3em] text-hero-foreground/80">Digital</span>
-      </span>
+    <a href="/" className="flex items-center" aria-label="Grow Digital">
+      <Logo className="h-12 w-auto sm:h-16" />
     </a>
   );
 }
@@ -436,7 +433,8 @@ function GuideCover({ compact = false }: { compact?: boolean }) {
   return (
     <div className={`relative aspect-[.707] overflow-hidden rounded-md bg-ink text-ink-foreground shadow-guide ring-1 ring-hero-foreground/20 ${compact ? "p-3.5" : "p-8"}`}>
       <div className="absolute inset-x-0 top-0 h-1.5 bg-highlight" />
-      <p className={`font-bold uppercase text-highlight ${compact ? "mt-2 text-[0.5rem]" : "mt-6 text-xs"}`}>Guia prático</p>
+      <LogoMark className={compact ? "mt-1 h-5 w-auto" : "mt-4 h-12 w-auto"} />
+      <p className={`font-bold uppercase text-highlight ${compact ? "mt-1.5 text-[0.5rem]" : "mt-5 text-xs"}`}>Guia prático</p>
       <p className={`font-display leading-tight font-semibold ${compact ? "mt-1.5 text-sm" : "mt-4 text-4xl"}`}>Agenda cheia, sem viver ao telefone</p>
       <p className={`text-ink-foreground/70 ${compact ? "mt-2 text-[0.5rem] leading-3" : "mt-6 text-sm leading-6"}`}>Diagnóstico, checklist e plano de 7 dias.</p>
       <span className={`absolute font-bold text-ink-foreground/60 ${compact ? "bottom-2.5 left-3.5 text-[0.45rem]" : "bottom-8 left-8 text-xs"}`}>GROW DIGITAL · 2026</span>
