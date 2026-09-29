@@ -11,7 +11,7 @@ const buttonVariants = cva(
       variant: {
         default: "bg-primary text-primary-foreground shadow hover:bg-primary/90",
         campaign:
-          "bg-primary text-primary-foreground shadow-campaign hover:bg-primary-strong active:translate-y-px",
+          "border-2 border-ink bg-cta font-bold text-cta-foreground shadow-campaign transition-all duration-150 hover:-translate-y-0.5 hover:bg-cta-hover hover:shadow-campaign-hover active:translate-y-[3px] active:shadow-campaign-active focus-visible:ring-4 focus-visible:ring-cta/60 [&_svg]:transition-transform hover:[&_svg]:translate-x-0.5",
         destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
         outline:
           "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
@@ -23,6 +23,7 @@ const buttonVariants = cva(
         default: "h-9 px-4 py-2",
         sm: "h-8 rounded-md px-3 text-xs",
         lg: "h-12 rounded-md px-8 text-base",
+        xl: "h-14 rounded-lg px-9 text-lg",
         icon: "h-9 w-9",
       },
     },
