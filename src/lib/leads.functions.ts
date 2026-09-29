@@ -16,7 +16,7 @@ const leadSchema = z.object({
 });
 
 export const submitLead = createServerFn({ method: "POST" })
-  .inputValidator((input) => leadSchema.parse(input))
+  .validator((input) => leadSchema.parse(input))
   .handler(async ({ data }) => {
     if (Date.now() - data.startedAt < 1_500) {
       throw new Error("Não foi possível validar o pedido. Tenta novamente.");
