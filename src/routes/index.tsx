@@ -21,6 +21,7 @@ import {
 
 import guideAsset from "@/assets/agenda-cheia.pdf.asset.json";
 import watermarkAsset from "@/assets/logo-watermark.png.asset.json";
+import { LegalFooter } from "@/components/legal-page";
 import { Button } from "@/components/ui/button";
 import { submitLead } from "@/lib/leads.functions";
 
@@ -216,7 +217,7 @@ function Index() {
                     </div>
                     <label className="flex cursor-pointer items-start gap-3 text-xs leading-5 text-muted-foreground">
                       <input name="consent" type="checkbox" required className="mt-1 size-4 accent-primary" />
-                      <span>Autorizo a Grow Digital a guardar os meus dados para enviar o guia e comunicações relacionadas. Posso retirar o consentimento a qualquer momento.</span>
+                      <span>Autorizo a Grow Digital a guardar os meus dados para enviar o guia e comunicações relacionadas, de acordo com a <a href="/privacidade" target="_blank" rel="noreferrer" className="font-semibold text-primary underline underline-offset-2">Política de Privacidade</a>. Posso retirar o consentimento a qualquer momento.</span>
                     </label>
                     {status === "error" && <p role="alert" className="text-sm font-medium text-destructive">{message}</p>}
                     <Button type="submit" variant="campaign" size="xl" className="w-full" disabled={status === "sending"}>
@@ -403,9 +404,7 @@ function Index() {
         </div>
       </section>
 
-      <footer className="border-t border-border px-5 py-8 text-center text-xs text-muted-foreground">
-        © 2026 Grow Digital · Estratégia, tecnologia e suporte direto de quem desenvolve.
-      </footer>
+      <LegalFooter />
 
       {/* ───────── CTA fixo em mobile ───────── */}
       <div
