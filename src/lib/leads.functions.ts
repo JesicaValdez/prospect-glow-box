@@ -51,7 +51,9 @@ export const submitLead = createServerFn({ method: "POST" })
         consented_at: new Date().toISOString(),
         source: "agenda-cheia-guide",
         // Undefined keys are omitted, so a repeat sign-up keeps its original origin.
-        ...data.attribution,
+        ...(Object.fromEntries(
+          Object.entries(data.attribution).filter(([, v]) => typeof v === "string" && v.length > 0),
+        ) as Record<string, string>),
       },
       { onConflict: "email" },
     );
