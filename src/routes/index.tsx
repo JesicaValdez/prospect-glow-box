@@ -105,8 +105,8 @@ function Index() {
     const hero = heroRef.current;
     const form = formRef.current;
     if (!hero || !form || typeof IntersectionObserver === "undefined") return;
-    const heroObs = new IntersectionObserver(([entry]) => setPastHero(!entry.isIntersecting), { threshold: 0.15 });
-    const formObs = new IntersectionObserver(([entry]) => setFormVisible(entry.isIntersecting), { threshold: 0.2 });
+    const heroObs = new IntersectionObserver((entries) => setPastHero(!entries[0]?.isIntersecting), { threshold: 0.15 });
+    const formObs = new IntersectionObserver((entries) => setFormVisible(entries[0]?.isIntersecting ?? false), { threshold: 0.2 });
     heroObs.observe(hero);
     formObs.observe(form);
     return () => {
