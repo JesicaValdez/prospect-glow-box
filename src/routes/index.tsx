@@ -48,6 +48,25 @@ export const Route = createFileRoute("/")({
 const fieldClass =
   "h-12 w-full rounded-md border border-input bg-background px-3.5 text-sm text-foreground outline-none transition focus:border-primary focus:ring-2 focus:ring-ring/20 user-invalid:border-destructive";
 
+const testimonials = [
+  {
+    name: "Grace Viajes",
+    image: "/testemunho-grace-viajes.webp",
+    quote:
+      "A Jesica entregou o nosso motor de reservas no prazo e com atenção a cada pormenor. A plataforma ficou exatamente como precisávamos.",
+    role: "Fundadora, Grace Viajes",
+    detail: "Cliente Grow Digital · Portugal",
+  },
+  {
+    name: "Boutique Artesanal",
+    image: "/testemunho-boutique-artesanal.webp",
+    quote:
+      "O nosso site em WordPress estava lento e sem certificado de segurança. A Jesica ativou o HTTPS, atualizou mais de 23 plugins, otimizou a base de dados e converteu as imagens para WebP. Hoje o site é rápido e seguro.",
+    role: "Boutique Artesanal",
+    detail: "Cliente Grow Digital · Braga",
+  },
+];
+
 const faqs = [
   {
     q: "O guia é mesmo gratuito?",
