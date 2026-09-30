@@ -24,6 +24,7 @@ import { Logo, LogoMark } from "@/components/brand";
 import { LegalFooter } from "@/components/legal-page";
 import { Button } from "@/components/ui/button";
 import { submitLead } from "@/lib/leads.functions";
+import { captureAttribution, readAttribution } from "@/lib/attribution";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -102,6 +103,10 @@ function Index() {
   const [formVisible, setFormVisible] = useState(false);
 
   useEffect(() => {
+    captureAttribution();
+  }, []);
+
+  useEffect(() => {
     const hero = heroRef.current;
     const form = formRef.current;
     if (!hero || !form || typeof IntersectionObserver === "undefined") return;
@@ -131,6 +136,7 @@ function Index() {
           consent: formData.get("consent") === "on",
           company: String(formData.get("company") ?? ""),
           startedAt,
+          attribution: readAttribution(),
         },
       });
       setStatus("success");
