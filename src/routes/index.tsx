@@ -371,20 +371,28 @@ function Index() {
             </div>
           </div>
 
-          <figure className="relative rounded-2xl border border-ink-foreground/10 bg-ink-foreground/[0.04] p-8 sm:p-10">
-            <span className="absolute -top-7 left-8 font-display text-8xl leading-none text-highlight" aria-hidden="true">“</span>
-            <blockquote className="font-display text-2xl leading-relaxed sm:text-3xl">
-              A Jesica entregou o nosso motor de reservas no prazo e com atenção a cada pormenor. A plataforma ficou exatamente como precisávamos.
-            </blockquote>
-            <figcaption className="mt-8 flex items-center gap-4">
-              {/* Substituir pela foto ou logótipo da Grace Viajes */}
-              <span className="flex size-12 items-center justify-center rounded-full bg-highlight text-sm font-bold text-ink">GV</span>
-              <span>
-                <span className="block font-semibold">Fundadora, Grace Viajes</span>
-                <span className="mt-0.5 block text-sm text-ink-foreground/60">Cliente Grow Digital · Portugal</span>
-              </span>
-            </figcaption>
-          </figure>
+          <div className="flex flex-col gap-10">
+            {testimonials.map((t) => (
+              <figure key={t.name} className="relative rounded-2xl border border-ink-foreground/10 bg-ink-foreground/[0.04] p-8 sm:p-10">
+                <span className="absolute -top-7 left-8 font-display text-8xl leading-none text-highlight" aria-hidden="true">“</span>
+                <blockquote className="font-display text-xl leading-relaxed sm:text-2xl">{t.quote}</blockquote>
+                <figcaption className="mt-8 flex items-center gap-4">
+                  <img
+                    src={t.image}
+                    alt={`Logótipo ${t.name}`}
+                    width={56}
+                    height={56}
+                    loading="lazy"
+                    className="size-14 shrink-0 rounded-full bg-white object-contain p-0.5 ring-2 ring-highlight/60"
+                  />
+                  <span>
+                    <span className="block font-semibold">{t.role}</span>
+                    <span className="mt-0.5 block text-sm text-ink-foreground/60">{t.detail}</span>
+                  </span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
         </div>
       </section>
 
