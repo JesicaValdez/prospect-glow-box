@@ -1,6 +1,15 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
+const utmField = z
+  .string()
+  .trim()
+  .max(200)
+  .regex(/^[\p{L}\p{N} ._\-+|/:%()]*$/u)
+  .optional()
+  .catch(undefined)
+  .transform((v) => (v ? v : undefined));
+
 const leadSchema = z.object({
   fullName: z.string().trim().min(2, "Indica o teu nome completo.").max(120),
   phone: z
@@ -13,6 +22,17 @@ const leadSchema = z.object({
   consent: z.literal(true, { errorMap: () => ({ message: "É necessário aceitar a política de privacidade." }) }),
   company: z.string().max(0),
   startedAt: z.number().int().positive(),
+  attribution: z
+    .object({
+      utm_source: utmField,
+      utm_medium: utmField,
+      utm_campaign: utmField,
+      utm_content: utmField,
+      utm_term: utmField,
+      referrer: z.string().trim().max(500).url().optional().catch(undefined),
+    })
+    .optional()
+    .default({}),
 });
 
 export const submitLead = createServerFn({ method: "POST" })
@@ -30,6 +50,10 @@ export const submitLead = createServerFn({ method: "POST" })
         email: data.email,
         consented_at: new Date().toISOString(),
         source: "agenda-cheia-guide",
+        // Undefined keys are omitted, so a repeat sign-up keeps its original origin.
+        ...(Object.fromEntries(
+          Object.entries(data.attribution).filter(([, v]) => typeof v === "string" && v.length > 0),
+        ) as Record<string, string>),
       },
       { onConflict: "email" },
     );

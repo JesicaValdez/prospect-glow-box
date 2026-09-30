@@ -6,3 +6,5 @@
 - [x] Guardar contactos de forma segura e entregar o guia.
 - [ ] Preparar a sequência de quatro emails (bloqueada até existir domínio de envio e serviço de marketing autorizado).
 - [ ] Verificar a página em computador e telemóvel.
+- [x] Guardar origem (UTM + referrer) em cada lead
+- [ ] Notificação de novo lead por email para jesica.valddez@gmail.com (com origem) — aguarda domínio de email

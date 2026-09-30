@@ -22,8 +22,14 @@ export type Database = {
           full_name: string
           id: string
           phone: string
+          referrer: string | null
           source: string
           updated_at: string
+          utm_campaign: string | null
+          utm_content: string | null
+          utm_medium: string | null
+          utm_source: string | null
+          utm_term: string | null
         }
         Insert: {
           consented_at: string
@@ -32,8 +38,14 @@ export type Database = {
           full_name: string
           id?: string
           phone: string
+          referrer?: string | null
           source?: string
           updated_at?: string
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
         }
         Update: {
           consented_at?: string
@@ -42,8 +54,14 @@ export type Database = {
           full_name?: string
           id?: string
           phone?: string
+          referrer?: string | null
           source?: string
           updated_at?: string
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
         }
         Relationships: []
       }
