@@ -48,6 +48,25 @@ export const Route = createFileRoute("/")({
 const fieldClass =
   "h-12 w-full rounded-md border border-input bg-background px-3.5 text-sm text-foreground outline-none transition focus:border-primary focus:ring-2 focus:ring-ring/20 user-invalid:border-destructive";
 
+const testimonials = [
+  {
+    name: "Grace Viajes",
+    image: "/testemunho-grace-viajes.webp",
+    quote:
+      "A Jesica entregou o nosso motor de reservas no prazo e com atenção a cada pormenor. A plataforma ficou exatamente como precisávamos.",
+    role: "Fundadora, Grace Viajes",
+    detail: "Cliente Grow Digital · Portugal",
+  },
+  {
+    name: "Boutique Artesanal",
+    image: "/testemunho-boutique-artesanal.webp",
+    quote:
+      "O nosso site em WordPress estava lento e sem certificado de segurança. A Jesica ativou o HTTPS, atualizou mais de 23 plugins, otimizou a base de dados e converteu as imagens para WebP. Hoje o site é rápido e seguro.",
+    role: "Boutique Artesanal",
+    detail: "Cliente Grow Digital · Braga",
+  },
+];
+
 const faqs = [
   {
     q: "O guia é mesmo gratuito?",
@@ -86,8 +105,8 @@ function Index() {
     const hero = heroRef.current;
     const form = formRef.current;
     if (!hero || !form || typeof IntersectionObserver === "undefined") return;
-    const heroObs = new IntersectionObserver(([entry]) => setPastHero(!entry.isIntersecting), { threshold: 0.15 });
-    const formObs = new IntersectionObserver(([entry]) => setFormVisible(entry.isIntersecting), { threshold: 0.2 });
+    const heroObs = new IntersectionObserver((entries) => setPastHero(!entries[0]?.isIntersecting), { threshold: 0.15 });
+    const formObs = new IntersectionObserver((entries) => setFormVisible(entries[0]?.isIntersecting ?? false), { threshold: 0.2 });
     heroObs.observe(hero);
     formObs.observe(form);
     return () => {
@@ -352,20 +371,28 @@ function Index() {
             </div>
           </div>
 
-          <figure className="relative rounded-2xl border border-ink-foreground/10 bg-ink-foreground/[0.04] p-8 sm:p-10">
-            <span className="absolute -top-7 left-8 font-display text-8xl leading-none text-highlight" aria-hidden="true">“</span>
-            <blockquote className="font-display text-2xl leading-relaxed sm:text-3xl">
-              A Jesica entregou o nosso motor de reservas no prazo e com atenção a cada pormenor. A plataforma ficou exatamente como precisávamos.
-            </blockquote>
-            <figcaption className="mt-8 flex items-center gap-4">
-              {/* Substituir pela foto ou logótipo da Grace Viajes */}
-              <span className="flex size-12 items-center justify-center rounded-full bg-highlight text-sm font-bold text-ink">GV</span>
-              <span>
-                <span className="block font-semibold">Fundadora, Grace Viajes</span>
-                <span className="mt-0.5 block text-sm text-ink-foreground/60">Cliente Grow Digital · Portugal</span>
-              </span>
-            </figcaption>
-          </figure>
+          <div className="flex flex-col gap-10">
+            {testimonials.map((t) => (
+              <figure key={t.name} className="relative rounded-2xl border border-ink-foreground/10 bg-ink-foreground/[0.04] p-8 sm:p-10">
+                <span className="absolute -top-7 left-8 font-display text-8xl leading-none text-highlight" aria-hidden="true">“</span>
+                <blockquote className="font-display text-xl leading-relaxed sm:text-2xl">{t.quote}</blockquote>
+                <figcaption className="mt-8 flex items-center gap-4">
+                  <img
+                    src={t.image}
+                    alt={`Logótipo ${t.name}`}
+                    width={56}
+                    height={56}
+                    loading="lazy"
+                    className="size-14 shrink-0 rounded-full bg-white object-contain p-0.5 ring-2 ring-highlight/60"
+                  />
+                  <span>
+                    <span className="block font-semibold">{t.role}</span>
+                    <span className="mt-0.5 block text-sm text-ink-foreground/60">{t.detail}</span>
+                  </span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
         </div>
       </section>
 
