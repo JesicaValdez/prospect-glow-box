@@ -65,3 +65,12 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+
+## Deploy en Vercel
+
+1. Vercel → Add New → Project → importar `JesicaValdez/prospect-glow-box`.
+2. Framework: dejar la detección automática. `vercel.json` ya define el comando de instalación y `npm run build:vercel` (que fija `NITRO_PRESET=vercel` para generar la salida de Vercel).
+3. Cargar las variables de `.env.example` en Settings → Environment Variables (Production y Preview). La más sensible es `SUPABASE_SERVICE_ROLE_KEY`: solo del lado del servidor, nunca con prefijo `VITE_`.
+4. Los PDFs del guía están en `public/` y se sirven en `/agenda-cheia-versao-gratis.pdf` y `/agenda-llena-version-gratis.pdf`.
+5. Probar en la URL de preview: formulario (el contacto se guarda en `leads`), descarga de los dos PDFs y el panel `/painel`.
+6. Recién después, conectar el dominio propio (por ejemplo `guia.growdigital.pt`) y actualizar los enlaces de la bio y de ManyChat.
