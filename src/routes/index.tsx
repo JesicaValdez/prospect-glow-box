@@ -19,7 +19,8 @@ import {
   X,
 } from "lucide-react";
 
-import guideAsset from "@/assets/agenda-cheia.pdf.asset.json";
+import guideAsset from "@/assets/agenda-cheia-versao-gratis.pdf.asset.json";
+import guideEsAsset from "@/assets/agenda-llena-version-gratis.pdf.asset.json";
 import { Logo, LogoMark } from "@/components/brand";
 import { LegalFooter } from "@/components/legal-page";
 import { Button } from "@/components/ui/button";
@@ -215,9 +216,12 @@ function Index() {
                   <h2 className="mt-6 font-display text-3xl font-semibold">O guia já é teu.</h2>
                   <p className="mx-auto mt-3 max-w-sm text-sm leading-6 text-muted-foreground">Guardámos os teus dados com segurança. Podes descarregar o guia agora.</p>
                   <Button asChild variant="campaign" size="lg" className="mt-7 w-full">
-                    <a href={guideAsset.url} download>Descarregar o guia <ArrowDown /></a>
+                    <a href={guideAsset.url} download="agenda-cheia-versao-gratis.pdf">Descarregar o guia <ArrowDown /></a>
                   </Button>
                   <p className="mt-5 text-xs leading-5 text-muted-foreground">Próximo passo: começa pelo diagnóstico rápido na primeira parte do guia.</p>
+                  <p className="mt-1 text-xs leading-5 text-muted-foreground">
+                    <a href={guideEsAsset.url} download="agenda-llena-version-gratis.pdf" className="underline underline-offset-2 hover:text-foreground">Versión en español (PDF)</a>
+                  </p>
                 </div>
               ) : (
                 <>
