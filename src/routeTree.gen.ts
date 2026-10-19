@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as PrivacidadeRouteImport } from './routes/privacidade'
+import { Route as SetupAdminRouteImport } from './routes/setup-admin'
 import { Route as TermosRouteImport } from './routes/termos'
 import { Route as AuthenticatedPainelRouteImport } from './routes/_authenticated/painel'
 
@@ -35,6 +36,11 @@ const PrivacidadeRoute = PrivacidadeRouteImport.update({
   path: '/privacidade',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SetupAdminRoute = SetupAdminRouteImport.update({
+  id: '/setup-admin',
+  path: '/setup-admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermosRoute = TermosRouteImport.update({
   id: '/termos',
   path: '/termos',
@@ -50,6 +56,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/privacidade': typeof PrivacidadeRoute
+  '/setup-admin': typeof SetupAdminRoute
   '/termos': typeof TermosRoute
   '/painel': typeof AuthenticatedPainelRoute
 }
@@ -57,6 +64,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/privacidade': typeof PrivacidadeRoute
+  '/setup-admin': typeof SetupAdminRoute
   '/termos': typeof TermosRoute
   '/painel': typeof AuthenticatedPainelRoute
 }
@@ -66,20 +74,23 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/privacidade': typeof PrivacidadeRoute
+  '/setup-admin': typeof SetupAdminRoute
   '/termos': typeof TermosRoute
   '/_authenticated/painel': typeof AuthenticatedPainelRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/privacidade' | '/termos' | '/painel'
+  fullPaths:
+    '/' | '/auth' | '/privacidade' | '/setup-admin' | '/termos' | '/painel'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/privacidade' | '/termos' | '/painel'
+  to: '/' | '/auth' | '/privacidade' | '/setup-admin' | '/termos' | '/painel'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
     | '/privacidade'
+    | '/setup-admin'
     | '/termos'
     | '/_authenticated/painel'
   fileRoutesById: FileRoutesById
@@ -89,6 +100,7 @@ export interface RootRouteChildren {
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AuthRoute: typeof AuthRoute
   PrivacidadeRoute: typeof PrivacidadeRoute
+  SetupAdminRoute: typeof SetupAdminRoute
   TermosRoute: typeof TermosRoute
 }
 
@@ -120,6 +132,13 @@ declare module '@tanstack/react-router' {
       path: '/privacidade'
       fullPath: '/privacidade'
       preLoaderRoute: typeof PrivacidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/setup-admin': {
+      id: '/setup-admin'
+      path: '/setup-admin'
+      fullPath: '/setup-admin'
+      preLoaderRoute: typeof SetupAdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/termos': {
@@ -155,6 +174,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AuthRoute: AuthRoute,
   PrivacidadeRoute: PrivacidadeRoute,
+  SetupAdminRoute: SetupAdminRoute,
   TermosRoute: TermosRoute,
 }
 export const routeTree = rootRouteImport
